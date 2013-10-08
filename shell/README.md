@@ -2,6 +2,7 @@
 
 1. install groovy
 2. add groovy to `PATH`
+3. download https://github.com/UniconLabs/shib-config-ui/blob/master/shell/src/main/groovy/shell.groovy
 3. run `./shell.groovy <shib_install_path>`
 
 ## variables
