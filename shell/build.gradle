@@ -1,0 +1,11 @@
+apply plugin: "groovy"
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:${project."groovy.version"}"
+    compile "edu.internet2.middleware:shibboleth-identityprovider:${project."shibboleth.version"}"
+    compile "javax.servlet:javax.servlet-api:3.0.1"
+
+    compile "jline:jline:${project."jline.version"}"
+    compile "org.fusesource.jansi:jansi:${project."jansi.version"}"
+    compile "org.apache.sshd:sshd-core:${project."apache-sshd.version"}"
+}
