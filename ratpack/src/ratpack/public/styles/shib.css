@@ -1,0 +1,19 @@
+.red {
+    color: red;
+}
+.blue {
+    color: blue;
+}
+
+li > input {
+    position: absolute;
+    left: 0px;
+}
+
+input ~ ul {
+    display: none;
+}
+
+input:checked ~ ul {
+    display: block;
+}
