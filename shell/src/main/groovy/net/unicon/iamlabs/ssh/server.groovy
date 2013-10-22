@@ -1,4 +1,4 @@
-package scaldingspoon.ssh
+package net.unicon.iamlabs.ssh
 
 import org.apache.sshd.SshServer
 import org.apache.sshd.server.Command
