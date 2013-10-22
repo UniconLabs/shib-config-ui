@@ -126,11 +126,25 @@ class PrintStuffModule extends AbstractModule {
     }
 }
 
+def applicationContext
+try {
+    applicationContext = new FileSystemXmlApplicationContext(["file:${System.getProperty("shib.home")}/conf/internal.xml", "file:${System.getProperty("shib.home")}/conf/service.xml"] as String[])
+} catch (org.springframework.beans.factory.BeanDefinitionStoreException e) {
+    applicationContext = null
+}
+
 ratpack {
     modules {
         register new PrintStuffModule()
     }
     handlers { PrintStuffService service ->
+        handler {
+            if (!applicationContext) {
+                response.send("invalid Shibboleth configuration; Check the `shib.home` property")
+            } else {
+                next()
+            }
+        }
         get {
             render groovyTemplate("index.html", title: "My Ratpack App")
         }
@@ -139,9 +153,6 @@ ratpack {
             def bean = getPathTokens().bean
             def writer = new StringWriter()
             def m = new MarkupBuilder(writer)
-
-            def shibPath = System.getProperty("shib.home")
-            def applicationContext = new FileSystemXmlApplicationContext(["file:${shibPath}/conf/internal.xml", "file:${shibPath}/conf/service.xml"] as String[])
 
             m.body {
                 def contextMap = [:]

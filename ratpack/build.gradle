@@ -29,5 +29,5 @@ dependencies {
 }
 
 run {
-    jvmArgs "-Dshib.home=${project."shib.home"}"
+    jvmArgs "-Dshib.home=${project.hasProperty("shib.home") ? project."shib.home" : "/opt/shibboleth-idp"}"
 }
